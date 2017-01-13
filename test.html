@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+    //原生方法 
+    // function jsonpCallback(result) {
+    //     for(var i in result) {
+    //         alert(i+":"+result[i]);//循环输出a:1,b:2,etc.
+    //     }
+    // }
+
+    // ajax获取
+    $(function(){
+        $.ajax({
+            type: 'get',
+            url : "test.php",
+            dataType : "jsonp",
+            jsonp: "callback",   //传递给服务器端，用以获得jsonp回调函数名的参数名(默认为:callback)
+            success:function(result) {  
+                for(var i in result) {  
+                    alert(i+":"+result[i]);//循环输出a:1,b:2,etc.  
+                }  
+            },
+        })
+    });
+
+    // jquery获取
+    // $.getJSON("test.php?callback=?",  
+    //     function(result) {  
+    //         for(var i in result) {  
+    //             alert(i+":"+result[i]);//循环输出a:1,b:2,etc.  
+    //         }  
+    //     }
+    // );  
+    </script>
+
+    <!-- 原生方法需script标签 -->
+<!--     <script type="text/javascript" src="test.php?callback=jsonpCallback"></script> -->
+</head>
+<body>
+
+</body>
+</html>
